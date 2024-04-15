@@ -1,0 +1,421 @@
+
+Setting environment for using XAMPP for Windows.
+rumah@JAYAS c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use dbpegawai;
+Database changed
+MariaDB [dbpegawai]> desc divisi;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.034 sec)
+
+MariaDB [dbpegawai]> desc jabatan;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.024 sec)
+
+MariaDB [dbpegawai]> desc pegawai;
++-----------+-------------------------------+------+-----+---------+----------------+
+| Field     | Type                          | Null | Key | Default | Extra        |
++-----------+-------------------------------+------+-----+---------+----------------+
+| id        | int(11)                       | NO   | PRI | NULL    | auto_increment |
+| nip       | char(5)                       | NO   | UNI | NULL    |        |
+| nama      | varchar(30)                   | NO   |     | NULL    |        |
+| gender    | enum('Laki-Laki','Perempuan') | NO   |     | NULL    |        |
+| tmp_lahir | varchar(30)                   | NO   |     | NULL    |        |
+| tgl_lahir | date                          | NO   |     | NULL    |        |
+| iddivisi  | int(11)                       | NO   | MUL | NULL    |        |
+| idjabatan | int(11)                       | NO   | MUL | NULL    |        |
+| alamat    | text                          | YES  |     | NULL    |        |
++-----------+-------------------------------+------+-----+---------+----------------+
+9 rows in set (0.036 sec)
+
+MariaDB [dbpegawai]> show tables;
++---------------------+
+| Tables_in_dbpegawai |
++---------------------+
+| divisi              |
+| jabatan             |
+| pegawai             |
++---------------------+
+3 rows in set (0.004 sec)
+
+MariaDB [dbpegawai]> select * from divisi;
++----+-----------+
+| id | nama      |
++----+-----------+
+|  4 | IT        |
+|  2 | Keuangan  |
+|  3 | Marketing |
+|  1 | SDM       |
++----+-----------+
+4 rows in set (0.041 sec)
+
+MariaDB [dbpegawai]> select * from jabatan;
++----+-----------------+
+| id | nama            |
++----+-----------------+
+|  3 | Asisten Manajer |
+|  1 | Direktur        |
+|  2 | Manager         |
+|  4 | Staff           |
++----+-----------------+
+4 rows in set (0.002 sec)
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+| id | nip   | nama             | gender    | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki | Jakarta   | 2003-11-23 |  4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |
+|  7 | 00012 | Putri Kulamasari | Perempuan | Bandung   | 1999-09-03 |  4 |         4 | Jl. Ahmad Yani No.14, Bandung      |
+|  8 | 00018 | Halimah Nabu     | Perempuan | Bogor     | 2003-06-25 |  4 |         2 | Jl. Sudirman No. 16, Bogor         |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki | Bekasi    | 2004-08-19 |  4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |
+| 10 | 00020 | Eka Nurhayati    | Perempuan | Bandung   | 2005-10-08 |  4 |         2 | Jl. A Yani No.18, Bandung          |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> select * from pegawai
+    -> ;
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+| id | nip   | nama             | gender    | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki | Jakarta   | 2003-11-23 |  4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |
+|  7 | 00012 | Putri Kulamasari | Perempuan | Bandung   | 1999-09-03 |  4 |         4 | Jl. Ahmad Yani No.14, Bandung      |
+|  8 | 00018 | Halimah Nabu     | Perempuan | Bogor     | 2003-06-25 |  4 |         2 | Jl. Sudirman No. 16, Bogor         |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki | Bekasi    | 2004-08-19 |  4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |
+| 10 | 00020 | Eka Nurhayati    | Perempuan | Bandung   | 2005-10-08 |  4 |         2 | Jl. A Yani No.18, Bandung          |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> DELETE FROM pegawai WHERE id > 10;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+| id | nip   | nama             | gender    | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki | Jakarta   | 2003-11-23 |  4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |
+|  7 | 00012 | Putri Kulamasari | Perempuan | Bandung   | 1999-09-03 |  4 |         4 | Jl. Ahmad Yani No.14, Bandung      |
+|  8 | 00018 | Halimah Nabu     | Perempuan | Bogor     | 2003-06-25 |  4 |         2 | Jl. Sudirman No. 16, Bogor         |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki | Bekasi    | 2004-08-19 |  4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |
+| 10 | 00020 | Eka Nurhayati    | Perempuan | Bandung   | 2005-10-08 |  4 |         2 | Jl. A Yani No.18, Bandung          |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> ALTER TABLE pegawai
+    -> ADD berat_badan FLOAT NOT NULL;
+Query OK, 0 rows affected (0.010 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [dbpegawai]> SET berat_badan = ROUND(RAND() * 40 + 40, 2);
+ERROR 1193 (HY000): Unknown system variable 'berat_badan'
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+
+| id | nip   | nama             | gender    | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki | Jakarta   | 2003-11-23 |  4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |
+|  7 | 00012 | Putri Kulamasari | Perempuan | Bandung   | 1999-09-03 |  4 |         4 | Jl. Ahmad Yani No.14, Bandung      |           0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan | Bogor     | 2003-06-25 |  4 |         2 | Jl. Sudirman No. 16, Bogor         |           0 |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki | Bekasi    | 2004-08-19 |  4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |           0 |
+| 10 | 00020 | Eka Nurhayati    | Perempuan | Bandung   | 2005-10-08 |  4 |         2 | Jl. A Yani No.18, Bandung          |           0 |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> ALTER TABLE pegawai
+    -> ADD umur INT NOT NULL;
+Query OK, 0 rows affected (0.012 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama             | gender    | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki | Jakarta   | 2003-11-23 |  4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |    0 |
+|  7 | 00012 | Putri Kulamasari | Perempuan | Bandung   | 1999-09-03 |  4 |         4 | Jl. Ahmad Yani No.14, Bandung      |           0 |    0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan | Bogor     | 2003-06-25 |  4 |         2 | Jl. Sudirman No. 16, Bogor         |           0 |    0 |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki | Bekasi    | 2004-08-19 |  4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |           0 |    0 |
+| 10 | 00020 | Eka Nurhayati    | Perempuan | Bandung   | 2005-10-08 |  4 |         2 | Jl. A Yani No.18, Bandung          |           0 |    0 |
++----+-------+------------------+-----------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> ALTER TABLE pegawai
+    -> CHANGE COLUMN gender jenis_kelamin VARCHAR(20) NOT NULL;
+Query OK, 5 rows affected (0.087 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [dbpegawai]> SELECT nip, nama, jenis_kelamin, alamat from pegawai;
++-------+------------------+---------------+------------------------------------+
+| nip   | nama             | jenis_kelamin | alamat
+    |
++-------+------------------+---------------+------------------------------------+
+| 00001 | Jayas Permana    | Laki-Laki     | Jl.Cilangkap No. 25, Jakarta Timur |
+| 00012 | Putri Kulamasari | Perempuan     | Jl. Ahmad Yani No.14, Bandung    |
+| 00018 | Halimah Nabu     | Perempuan     | Jl. Sudirman No. 16, Bogor    |
+| 00009 | Fauzi Kone       | Laki-Laki     | Jl. Pondok Gede No. 17, Bekasi    |
+| 00020 | Eka Nurhayati    | Perempuan     | Jl. A Yani No.18, Bandung    |
++-------+------------------+---------------+------------------------------------+
+5 rows in set (0.003 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE jenis_kelamin = 'Laki-laki';
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama          | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana | Laki-Laki     | Jakarta   | 2003-11-23 |   4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |    0 |
+|  9 | 00009 | Fauzi Kone    | Laki-Laki     | Bekasi    | 2004-08-19 |   4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |           0 |    0 |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE jenis kelamin = 'Perempuan';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'kelamin = 'Perempuan'' at line 2
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE jenis_kelamin = 'Perempuan';
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+| id | nip   | nama             | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                        | berat_badan | umur |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+|  7 | 00012 | Putri Kulamasari | Perempuan     | Bandung   | 1999-09-03 |      4 |         4 | Jl. Ahmad Yani No.14, Bandung |           0 |    0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan     | Bogor     | 2003-06-25 |      4 |         2 | Jl. Sudirman No. 16, Bogor    |           0 |    0 |
+| 10 | 00020 | Eka Nurhayati    | Perempuan     | Bandung   | 2005-10-08 |      4 |         2 | Jl. A Yani No.18, Bandung     |           0 |    0 |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE umur > 30 AND tmp_lahir = 'Jakarta';
+Empty set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai WHERE iddivisi = 3 AND umur > 30
+AND jenis_kelamin = 'Perempuan';
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai WHERE nip = '12345';
+Empty set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai WHERE jenis_kelamin = 'Perempuan'
+;
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+| id | nip   | nama             | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                        | berat_badan | umur |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+|  7 | 00012 | Putri Kulamasari | Perempuan     | Bandung   | 1999-09-03 |      4 |         4 | Jl. Ahmad Yani No.14, Bandung |           0 |    0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan     | Bogor     | 2003-06-25 |      4 |         2 | Jl. Sudirman No. 16, Bogor    |           0 |    0 |
+| 10 | 00020 | Eka Nurhayati    | Perempuan     | Bandung   | 2005-10-08 |      4 |         2 | Jl. A Yani No.18, Bandung     |           0 |    0 |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai WHERE nip IN ('12345','23456','34
+567');
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai WHERE tmp_lahir NOT IN ('Jakarta','Bogor','Bandung');
++----+-------+------------+---------------+-----------+------------+----------+-----------+--------------------------------+-------------+------+
+| id | nip   | nama       | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                         | berat_badan | umur |
++----+-------+------------+---------------+-----------+------------+----------+-----------+--------------------------------+-------------+------+
+|  9 | 00009 | Fauzi Kone | Laki-Laki     | Bekasi    | 2004-08-19 |4 |         3 | Jl. Pondok Gede No. 17, Bekasi |           0 |    0 |
++----+-------+------------+---------------+-----------+------------+----------+-----------+--------------------------------+-------------+------+
+1 row in set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai ORDER BY nama ASC;
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama             | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| 10 | 00020 | Eka Nurhayati    | Perempuan     | Bandung   | 2005-10-08 |      4 |         2 | Jl. A Yani No.18, Bandung          |           0 |0 |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki     | Bekasi    | 2004-08-19 |      4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |           0 |0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan     | Bogor     | 2003-06-25 |      4 |         2 | Jl. Sudirman No. 16, Bogor         |           0 |0 |
+|  6 | 00001 | Jayas Permana    | Laki-Laki     | Jakarta   | 2003-11-23 |      4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |0 |
+|  7 | 00012 | Putri Kulamasari | Perempuan     | Bandung   | 1999-09-03 |      4 |         4 | Jl. Ahmad Yani No.14, Bandung      |           0 |0 |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai ORDER BY berat_badan DESC
+    -> LIMIT 5;
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama             | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana    | Laki-Laki     | Jakarta   | 2003-11-23 |      4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |0 |
+|  7 | 00012 | Putri Kulamasari | Perempuan     | Bandung   | 1999-09-03 |      4 |         4 | Jl. Ahmad Yani No.14, Bandung      |           0 |0 |
+|  8 | 00018 | Halimah Nabu     | Perempuan     | Bogor     | 2003-06-25 |      4 |         2 | Jl. Sudirman No. 16, Bogor         |           0 |0 |
+|  9 | 00009 | Fauzi Kone       | Laki-Laki     | Bekasi    | 2004-08-19 |      4 |         3 | Jl. Pondok Gede No. 17, Bekasi     |           0 |0 |
+| 10 | 00020 | Eka Nurhayati    | Perempuan     | Bandung   | 2005-10-08 |      4 |         2 | Jl. A Yani No.18, Bandung          |           0 |0 |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai ORDER BY berat_badan ASC
+    -> LIMIT 5 OFFSET 5;
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT COUNT(*) AS jumlah_pegawai
+    -> from pegawai;
++----------------+
+| jumlah_pegawai |
++----------------+
+|              5 |
++----------------+
+1 row in set (0.004 sec)
+
+MariaDB [dbpegawai]> SELECT nip, nama, umur FROM pegawai
+    -> WHERE umur = (SELECT MAX(umur) FROM pegawai);
++-------+------------------+------+
+| nip   | nama             | umur |
++-------+------------------+------+
+| 00001 | Jayas Permana    |    0 |
+| 00012 | Putri Kulamasari |    0 |
+| 00018 | Halimah Nabu     |    0 |
+| 00009 | Fauzi Kone       |    0 |
+| 00020 | Eka Nurhayati    |    0 |
++-------+------------------+------+
+5 rows in set (0.009 sec)
+
+MariaDB [dbpegawai]> SELECT nip, nama, berat_badan FROM pegawai
+    -> WHERE berat_badan = (SELECT MIN(berat_badan) FROM pegawai);
++-------+------------------+-------------+
+| nip   | nama             | berat_badan |
++-------+------------------+-------------+
+| 00001 | Jayas Permana    |           0 |
+| 00012 | Putri Kulamasari |           0 |
+| 00018 | Halimah Nabu     |           0 |
+| 00009 | Fauzi Kone       |           0 |
+| 00020 | Eka Nurhayati    |           0 |
++-------+------------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT AVG(umur) AS rata_rata_umur FROM pegawai;
++----------------+
+| rata_rata_umur |
++----------------+
+|         0.0000 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT COUNT(*) AS jumlah_pegawai FROM pegawai
+    -> WHERE jenis_kelamin = 'Perempuan'
+    -> AND umur < 40
+    -> AND idjabatan = 4;
++----------------+
+| jumlah_pegawai |
++----------------+
+|              1 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbpegawai]> WHERE jenis_kelamin = 'Perempuan';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE jenis_kelamin = 'Perempuan'' at line 1
+MariaDB [dbpegawai]> SELECT COUNT(*) AS jumlah_pegawai_perempuan FROM pegawa
+i
+    -> WHERE jenis_kelamin = 'Perempuan';
++--------------------------+
+| jumlah_pegawai_perempuan |
++--------------------------+
+|                        3 |
++--------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbpegawai]> SELECT SUM(CASE WHEN iddivisi = 1 THEN 1 ELSE 0 END) AS
+ jumlah_pegawai_SDM FROM pegawai
+    -> WHERE iddivisi = 1;
++--------------------+
+| jumlah_pegawai_SDM |
++--------------------+
+|               NULL |
++--------------------+
+1 row in set (0.002 sec)
+
+MariaDB [dbpegawai]> SELECT iddivisi, COUNT(*) AS jumlah_pegawai FROM pegawa
+i
+    -> FROUP BY iddivisi;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BY iddivisi' at line 2
+MariaDB [dbpegawai]> SELECT iddivisi, COUNT(*) AS jumlah_pegawai FROM pegawai
+    -> GROUP BY iddivisi;
++----------+----------------+
+| iddivisi | jumlah_pegawai |
++----------+----------------+
+|        4 |              5 |
++----------+----------------+
+1 row in set (0.003 sec)
+
+MariaDB [dbpegawai]> SELECT jenis_kelamin, COUNT(*) AS jumlah_pegwai FROM pe
+gawai
+    -> GROUP BY jenis_kelamin
+    -> HAVING COUNT(*) >= 10;
+Empty set (0.004 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE 'Muhammd %';
+Empty set (0.040 sec)
+
+MariaDB [dbpegawai]> WHERE nama LIKE 'Jayas %';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE nama LIKE 'Jayas %'' at line 1
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE LIKE '%Jayas';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LIKE '%Jayas'' at line 2
+MariaDB [dbpegawai]> WHERE LIKE '%Muhammd';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE LIKE '%Muhammd'' at line 1
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE 'Jayas %';
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama          | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana | Laki-Laki     | Jakarta   | 2003-11-23 |   4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |    0 |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+1 row in set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE '%Putri%';
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+| id | nip   | nama             | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                        | berat_badan | umur |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+|  7 | 00012 | Putri Kulamasari | Perempuan     | Bandung   | 1999-09-03 |      4 |         4 | Jl. Ahmad Yani No.14, Bandung |           0 |    0 |
++----+-------+------------------+---------------+-----------+------------+----------+-----------+-------------------------------+-------------+------+
+1 row in set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE '____S%';
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama          | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana | Laki-Laki     | Jakarta   | 2003-11-23 |   4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |    0 |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+1 row in set (0.001 sec)
+
+MariaDB [dbpegawai]> INSERT INTO pegawai (nip, nama, jenis_kelamin, tmp_lahir, tgl_lahir, iddivisi, idjabatan, alamat, berat_badan, umur)
+    -> VALUES ('89010', 'Jayas Permana', 'Laki-laki', 'Jakarta', '2003-11-23
+', 1, 1, 'Jl. Cilangkap No. 123',37,27);
+Query OK, 1 row affected (0.060 sec)
+
+MariaDB [dbpegawai]> SELECT jenis_kelamin, COUNT(*) AS jumlah_pegawai FROM p
+egawai
+    -> GROUP BY jenis_kelamin
+    -> HAVING COUNT(*) >= 10;
+Empty set (0.002 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE '%Jayas';
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]> SELECT * FROM pegawai
+    -> WHERE nama LIKE '____S%';
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+| id | nip   | nama          | jenis_kelamin | tmp_lahir | tgl_lahir  | iddivisi | idjabatan | alamat                             | berat_badan | umur |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+|  6 | 00001 | Jayas Permana | Laki-Laki     | Jakarta   | 2003-11-23 |   4 |         1 | Jl.Cilangkap No. 25, Jakarta Timur |           0 |    0 |
+| 11 | 89010 | Jayas Permana | Laki-laki     | Jakarta   | 2003-11-23 |   1 |         1 | Jl. Cilangkap No. 123              |          37 |   27 |
++----+-------+---------------+---------------+-----------+------------+----------+-----------+------------------------------------+-------------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [dbpegawai]>
